@@ -1,6 +1,7 @@
+
 const typeDefs = `
     type User {
-      _id: ID
+      _id: ID!
       username: String
       email: String
       password: String
@@ -11,16 +12,31 @@ const typeDefs = `
       user: User
     }
 
+    type Playlist {
+      id: ID!
+      name: String
+      description: String
+      external_urls: ExternalUrls
+    }
+
+    type ExternalUrls {
+      spotify: String
+    }
+
     type Query {
-      users: [User]!
-      user(userId: ID!): Profile
+      users: [User]
+      user(username: String!): User
       me: User
+      featuredPlaylists: [Playlist]
     }
 
     type Mutation {
       addUser(username: String!, email: String!, password: String!): Auth
       login(email: String!, password: String!): Auth
-      removeUser: User
+    }
+
+    type hello {
+      hello: String
     }
 `;
 

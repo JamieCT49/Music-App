@@ -5,7 +5,21 @@ const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true,
         match: [/.+@.+\..+/, 'Must match an email address!']},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    spotify: {
+        accessToken: {
+            type: String
+        },
+        refreshToken: {
+            type: String
+        },
+        expiresIn: {
+            type: Number
+        },
+        tokenType: {
+            type: String
+        }
+    }
 });
 
 userSchema.pre('save', async function (next) {

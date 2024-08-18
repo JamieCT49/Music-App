@@ -6,9 +6,13 @@ const cleanDB = require('./cleanDB');
 db.once('open', async () => {
     try {
         await cleanDB('User', 'users');
+
         await User.create(userSeeds);
-        console.log('done');
     } catch (err) {
-        throw err;
+        console.error(err);
+        process.exit(1);
     }
+
+    console.log('all done!');
+    process.exit(0);
 });
